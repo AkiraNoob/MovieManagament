@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import SideBar from "~/contents/sidebar/SideBar";
 import ThemeRegistry from "~/theme/ThemeRegistry";
+import "./globals.scss";
+import styles from "./root.module.scss";
 
 export const metadata: Metadata = {
   title: "Honey Movies",
@@ -15,7 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ThemeRegistry>
-        <body>{children}</body>
+        <body className={styles.container}>
+          <SideBar />
+          <main className={styles.main}>{children}</main>
+        </body>
       </ThemeRegistry>
     </html>
   );

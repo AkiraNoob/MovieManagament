@@ -1,0 +1,78 @@
+@use "../../../app/variants.module" as variants;
+
+$movie_card_width: 295px;
+$movie_card_cover_height: 417px;
+
+:export {
+  movieCardWidth: $movie_card_width;
+  movieCardCoverHeight: $movie_card_cover_height;
+}
+
+.movie_card {
+  max-width: $movie_card_width;
+  width: 100%;
+  height: auto;
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  color: var(--text);
+
+  > * + * {
+    margin-top: 15px;
+  }
+
+  &_cover {
+    max-height: $movie_card_cover_height;
+    object-fit: contain;
+  }
+
+  &_rating_score {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 18px;
+    padding: 5px 23px;
+    background-color: variants.$primary;
+  }
+
+  &_interaction {
+    > * + * {
+      margin-top: 8px;
+    }
+
+    > :first-child {
+      padding: 0 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: variants.$text-secondary;
+    }
+
+    > :nth-child(2) {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+    }
+  }
+
+  &_information {
+    font-weight: 600;
+
+    > * {
+      width: fit-content;
+    }
+
+    &_title {
+      font-size: 32px;
+    }
+
+    &_date_released {
+      font-size: 18px;
+      color: variants.$text-secondary;
+    }
+
+    &_description {
+      font-size: 14px;
+    }
+  }
+}
