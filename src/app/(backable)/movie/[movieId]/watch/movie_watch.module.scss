@@ -1,0 +1,20 @@
+.movie_watch_page {
+  width: 100%;
+  height: 100%;
+  margin-top: 40px;
+
+  &_iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 1px solid #ffffff48;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 50px;
+  }
+
+  &_related_movies {
+    &_title {
+      font-size: 36px;
+    }
+  }
+}

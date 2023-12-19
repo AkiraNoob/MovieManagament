@@ -1,0 +1,19 @@
+$banner_movie_card_max_width: 770px;
+
+.banner_movie_card {
+  aspect-ratio: 22 / 10;
+  border-radius: 16px;
+  padding: 20px;
+
+  max-width: $banner_movie_card_max_width;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  > h2 {
+    font-size: 48px;
+    font-weight: 800;
+    margin: 20px;
+  }
+}

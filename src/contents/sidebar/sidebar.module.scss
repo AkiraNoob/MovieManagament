@@ -1,8 +1,14 @@
 @use "../../app/variants.module" as variants;
+
 .sidebar {
-  width: 256px;
+  width: variants.$sidebar-width;
+  height: 100vh;
+  flex-shrink: 0;
   padding: 50px 23px;
   color: variants.$text;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
 
   > *:not(:last-child) {
     margin-bottom: 32px;

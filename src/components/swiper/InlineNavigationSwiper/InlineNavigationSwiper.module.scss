@@ -1,0 +1,68 @@
+@use "../../../app/variants.module" as variants;
+
+.wrapper {
+  position: relative;
+
+  &_navigation {
+    position: absolute;
+
+    > :nth-child(1) {
+      top: 1/2;
+      left: 10px;
+      transform: translateY(-50%);
+    }
+
+    > :nth-child(2) {
+      top: 1/2;
+      right: 10px;
+      transform: translateY(-50%);
+    }
+
+    * {
+      color: variants.$text;
+    }
+  }
+
+  > * + * {
+    margin-top: 20px;
+  }
+}
+
+.inline_navigation_swiper {
+  max-width: calc(variants.$container - variants.$sidebar-width);
+  &_slide {
+    height: auto;
+    // width: fit-content;
+  }
+}
+
+.inline_navigation_swiper_skeleton {
+  > * + * {
+    margin-top: 20px;
+  }
+
+  &_navigation {
+    * {
+      color: variants.$text;
+    }
+
+    > * {
+      padding: 10px;
+    }
+
+    display: flex;
+    gap: 4px;
+  }
+
+  &_swiper {
+    display: flex;
+    max-width: calc(variants.$container - variants.$sidebar-width);
+    gap: 12px;
+
+    > * {
+      flex-shrink: 0;
+      height: auto;
+      width: max-content;
+    }
+  }
+}

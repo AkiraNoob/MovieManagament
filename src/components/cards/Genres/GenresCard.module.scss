@@ -1,0 +1,30 @@
+@use "../../../app/variants.module" as variants;
+
+$genres_card_width_large: 370px;
+$genres_card_height_large: 194px;
+
+$genres_card_width_small: 210px;
+$genres_card_height_small: 99px;
+
+:export {
+  genresCardWidthLarge: $genres_card_width_large;
+  genresCardHeightLarge: $genres_card_height_large;
+
+  genresCardWidthSmall: $genres_card_width_small;
+  genresCardHeightSmall: $genres_card_height_small;
+}
+
+.genres_card {
+  border-radius: 16px;
+  border: 1px solid variants.$border;
+  background-color: #16181eb2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &_label {
+    font-size: 20px;
+    font-weight: 800;
+  }
+}

@@ -1,6 +1,22 @@
+@use "_variants.module" as variants;
+
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  opacity: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: variants.$text;
+  border-radius: 16px;
 }
 
 @for $i from 1 through 6 {
@@ -10,4 +26,17 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: $i;
   }
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.movie_background {
+  background-repeat: no-repeat;
+  background-color: lightgrey;
+  background-size: cover;
+  background-position: center;
 }

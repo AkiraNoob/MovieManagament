@@ -1,13 +1,41 @@
 $background-color: #000;
 $text: #f9f9f9;
 $text-secondary: #f9f9f9b2;
+$text-high-secondary: #f9f9f9ab;
 $primary: #f8b319;
 $background-color-secondary: #f9f9f933;
+$border: #f9f9f91a;
+$movie-continue: #16181e;
+
+$sidebar-width: 256px;
+$container: 1440px;
+
+$xs: 320px;
+$sm: 375px;
+$md: 480px;
+$lg: 768px;
+$xl: 1024px;
+$xxl: 1280px;
+$xxxl: 1440px;
 
 :export {
   backgroundColor: $background-color;
   backgroundColorSecondary: $background-color-secondary;
   text: $text;
   textSecondary: $text-secondary;
+  textHighSecondary: $text-high-secondary;
   primary: $primary;
+  border: $border;
+  movieContinue: $movie-continue;
+
+  sidebarWidth: $sidebar-width;
+  container: $container;
+
+  xs: $xs;
+  sm: $sm;
+  md: $md;
+  lg: $lg;
+  xl: $xl;
+  xxl: $xxl;
+  xxxl: $xxxl;
 }

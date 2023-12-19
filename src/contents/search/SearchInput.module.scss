@@ -1,0 +1,9 @@
+.search_input_wrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  &_hamburger {
+    flex-shrink: 0;
+  }
+}

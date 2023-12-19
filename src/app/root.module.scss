@@ -1,17 +1,87 @@
 @use "_variants.module" as variants;
 
 .container {
-  max-width: 1400px;
+  max-width: variants.$container;
   width: 100%;
   margin: 0 auto;
-  height: 100vh;
   display: flex;
   overflow-x: hidden;
+  overflow-y: auto;
   color: variants.$text;
   background-color: variants.$background-color;
 }
 
+.sidebar {
+  @media only screen and (max-width: variants.$lg) {
+    display: none;
+  }
+}
+
 .main {
-  flex-grow: 1;
-  flex-shrink: 0;
+  flex: 1 1 0;
+  overflow: hidden;
+  display: flex;
+
+  @media only screen and (max-width: variants.$lg) {
+    flex-direction: column;
+  }
+}
+
+.home_content {
+  &_left {
+    width: 65%;
+    padding: 18px 36px;
+
+    @media only screen and (max-width: variants.$lg) {
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+    @media only screen and (max-width: variants.$md) {
+      padding: 10px;
+    }
+
+    > * + * {
+      margin-top: 36px;
+    }
+  }
+
+  &_right {
+    flex-shrink: 0;
+    width: 35%;
+    margin-top: 100px;
+
+    @media only screen and (max-width: variants.$lg) {
+      margin-top: 0px;
+      width: 100%;
+      padding: 18px 36px;
+    }
+
+    @media only screen and (max-width: variants.$md) {
+      padding: 10px;
+    }
+
+    &_genres_slide_col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    &_swiper_more_control {
+      color: variants.$text-high-secondary;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+    }
+
+    > * + * {
+      margin-top: 50px;
+
+      @media only screen and (max-width: variants.$lg) {
+        margin-top: 20px;
+      }
+    }
+  }
 }

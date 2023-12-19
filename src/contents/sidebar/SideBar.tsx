@@ -3,11 +3,10 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import HomeIcon from "@mui/icons-material/Home";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import { Skeleton } from "@mui/material";
 import Image from "next/image";
+import SideBarMenu from "./SideBarMenu";
+import styles from "./Sidebar.module.scss";
 import LogoutButton from "./components/LogoutButton";
-import SideBarMenu from "./components/SideBarMenu";
-import styles from "./sidebar.module.scss";
 
 const SideBar = () => {
   return (
@@ -53,25 +52,5 @@ const SideBar = () => {
     </div>
   );
 };
-
-function SideBarSkeleton() {
-  return (
-    <div className={styles.menu}>
-      <Skeleton
-        variant="text"
-        style={{
-          fontSize: "inherit",
-        }}
-      />
-
-      {new Array(5).fill(0).map((_item, index) => (
-        <div key={index} className={styles.menu_item}>
-          <Skeleton width={24} height={24} variant="rounded" />
-          <Skeleton width={"100%"} height={24} variant="rounded" />
-        </div>
-      ))}
-    </div>
-  );
-}
 
 export default SideBar;

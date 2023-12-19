@@ -1,0 +1,54 @@
+@use "../../../../app/variants.module" as variants;
+
+$continue_movie_card_width: 210px;
+
+:export {
+  continueMovieCardWidth: $continue_movie_card_width;
+}
+
+.continue_movie_card {
+  background-color: variants.$movie-continue;
+  border: 1px solid variants;
+  border-radius: 16px;
+  padding: 10px;
+
+  width: $continue_movie_card_width;
+
+  > * + * {
+    margin-top: 10px;
+  }
+
+  > :nth-child(2) {
+    display: flex;
+    gap: 10px;
+  }
+
+  &_information {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+
+    > img {
+      border-radius: 8px;
+      object-fit: contain;
+    }
+
+    &_text {
+      > * + * {
+        margin-top: 10px;
+      }
+
+      :first-child {
+        color: variants.$text;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      :nth-child(2) {
+        color: variants.$text-secondary;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+  }
+}

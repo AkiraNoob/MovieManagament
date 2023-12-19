@@ -1,0 +1,22 @@
+@use "../../variants.module" as variants;
+@use "../../../components/cards/Movie/ExtendMovieCard/ExtendMovieCard.module.scss"
+  as movieCardVariants;
+
+.page {
+  &_header {
+    font-size: 48px;
+    font-weight: 800;
+    color: variants.$text;
+    margin: 40px 0;
+  }
+
+  &_movies {
+    display: grid;
+    justify-content: space-between;
+    row-gap: 40px;
+    grid-template-columns: repeat(
+      3,
+      movieCardVariants.$extend_movie_card_width
+    );
+  }
+}

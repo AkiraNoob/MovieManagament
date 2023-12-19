@@ -1,0 +1,31 @@
+@use "../../../../app/variants.module" as variants;
+
+$default_movie_card_width: 237px;
+$default_movie_card_height: 300px;
+
+.default_movie_card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 16px;
+  padding: 10px;
+
+  width: $default_movie_card_width;
+  height: $default_movie_card_height;
+
+  > h3 {
+    color: variants.$text;
+    font-weight: 800;
+  }
+
+  > :first-child {
+    padding: 10px;
+  }
+
+  &_duration_genres {
+    display: flex;
+    justify-content: space-between;
+    color: variants.$text-secondary;
+    font-weight: 700;
+  }
+}

@@ -2,7 +2,7 @@
 
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import Link from "next/link";
-import styles from "../sidebar.module.scss";
+import styles from "../Sidebar.module.scss";
 
 const LogoutButton = () => {
   const onclick = () => {

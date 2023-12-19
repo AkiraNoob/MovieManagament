@@ -1,0 +1,10 @@
+.backable_button {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+
+  > p {
+    font-size: 28px;
+    font-weight: 800;
+  }
+}

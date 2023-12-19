@@ -1,0 +1,78 @@
+@use "../../../../app/variants.module" as variants;
+
+$extend_movie_card_width: 295px;
+$extend_movie_card_cover_height: 417px;
+
+:export {
+  movieCardWidth: $extend_movie_card_width;
+  movieCardCoverHeight: $extend_movie_card_cover_height;
+}
+
+.extend_movie_card {
+  max-width: $extend_movie_card_width;
+  width: 100%;
+  height: auto;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  color: var(--text);
+
+  > * + *:not(.extend_movie_card_rating_score) {
+    margin-top: 15px;
+  }
+
+  &_cover {
+    max-height: $extend_movie_card_cover_height;
+    object-fit: cover;
+  }
+
+  &_rating_score {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px 23px;
+    border-bottom-left-radius: 16px;
+    background-color: variants.$primary;
+  }
+
+  &_interaction {
+    > * + * {
+      margin-top: 8px;
+    }
+
+    > :first-child {
+      padding: 0 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: variants.$text-secondary;
+    }
+
+    > :nth-child(2) {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+    }
+  }
+
+  &_information {
+    font-weight: 600;
+
+    > * {
+      width: fit-content;
+    }
+
+    &_title {
+      font-size: 32px;
+    }
+
+    &_date_released {
+      font-size: 18px;
+      color: variants.$text-secondary;
+    }
+
+    &_description {
+      font-size: 14px;
+    }
+  }
+}

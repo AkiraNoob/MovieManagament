@@ -18,7 +18,9 @@ export default function RootLayout({
     <html lang="en">
       <ThemeRegistry>
         <body className={styles.container}>
-          <SideBar />
+          <div className={styles.sidebar}>
+            <SideBar />
+          </div>
           <main className={styles.main}>{children}</main>
         </body>
       </ThemeRegistry>
