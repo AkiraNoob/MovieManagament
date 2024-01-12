@@ -1,0 +1,5 @@
+@use "../../../app/variants.module" as variants;
+
+.not_found {
+  color: variants.$text;
+}

@@ -2,14 +2,14 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-export const useNavigatorGenresMovies = (genres: string) => {
+export const useNavigatorGenresMovies = (genreId: number) => {
   const router = useRouter();
 
   useEffect(() => {
-    router.prefetch(`/genres/${genres}`);
-  }, [router, genres]);
+    router.prefetch(`/genres/${genreId}`);
+  }, [router, genreId]);
 
-  const navigate = () => router.push(`/genres/${genres}`);
+  const navigate = () => router.push(`/genres/${genreId}`);
 
   return { navigate };
 };

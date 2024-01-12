@@ -1,9 +1,11 @@
+"use client";
+
 import AddIcon from "@mui/icons-material/Add";
 import Button from "@mui/material/Button";
 import { useNavigateContinueWatchMovie } from "~/hooks/useNavigatorToMoviePage";
 import styles from "./MovieDetailInteractionButton.module.scss";
 
-const MovieDetailInteractionButton = ({ id }: { id: string }) => {
+const MovieDetailInteractionButton = ({ id }: { id: number }) => {
   const { navigate } = useNavigateContinueWatchMovie(id);
 
   return (

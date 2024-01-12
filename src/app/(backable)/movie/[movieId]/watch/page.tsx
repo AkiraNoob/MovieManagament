@@ -1,6 +1,9 @@
-import ExtendMovieCard from "~/components/cards/Movie/ExtendMovieCard/ExtendMovieCard";
-import TitleSwiper from "~/components/swiper/TitleSwiper/TitleSwiper";
+"use client";
+
+import { CustomActiveRating } from "~/components/rating/Rating";
+import RequestLoginHOC from "~/contents/HOC/RequestLoginHOC";
 import styles from "./movie_watch.module.scss";
+import WatchIframe from "./watchIframe";
 
 export default function Page({
   params,
@@ -11,14 +14,10 @@ export default function Page({
 }) {
   return (
     <div className={styles.movie_watch_page}>
-      <iframe
-        className={styles.movie_watch_page_iframe}
-        allow="fullscreen"
-        allowFullScreen
-        src={`https://vidsrc.to/embed/movie/${params.movieId}`}
-      />
+      <WatchIframe movieId={params.movieId} />
+      <Rating />
 
-      <div className={styles.movie_watch_page_related_movies}>
+      {/* <div className={styles.movie_watch_page_related_movies}>
         <h3 className={styles.movie_watch_page_related_movies_title}>
           Related movie
         </h3>
@@ -45,7 +44,15 @@ export default function Page({
             />
           ))}
         </TitleSwiper>
-      </div>
+      </div> */}
     </div>
+  );
+}
+
+function Rating() {
+  return (
+    <RequestLoginHOC>
+      <CustomActiveRating size={21} />
+    </RequestLoginHOC>
   );
 }

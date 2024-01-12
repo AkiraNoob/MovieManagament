@@ -1,0 +1,35 @@
+@use "../../app/variants.module" as variants;
+
+.request_login_hoc {
+  color: variants.$text;
+  padding: 16px;
+
+  &_title {
+    font-size: 26px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &_form {
+    margin: 16px 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    &_button {
+      margin: 0 auto;
+    }
+  }
+
+  &_register_navigate {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+
+    > span {
+      text-decoration: underline;
+      color: variants.$primary;
+      cursor: pointer;
+    }
+  }
+}

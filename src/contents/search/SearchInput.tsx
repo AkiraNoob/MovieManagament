@@ -9,10 +9,9 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useState } from "react";
 import variants from "~/app/_variants.module.scss";
 import useToggle from "~/hooks/useToggle";
-import SideBar from "../sidebar/SideBar";
 import styles from "./SearchInput.module.scss";
 
-const SearchInput = () => {
+const SearchInput = ({ sidebar }: { sidebar: React.ReactNode }) => {
   const [search, setSearch] = useState<string>("");
   const [openSideBar, toggle] = useToggle(false);
 
@@ -43,7 +42,7 @@ const SearchInput = () => {
 
       {isMobile && (
         <Drawer anchor={"left"} open={openSideBar} onClose={toggle}>
-          <SideBar />
+          {sidebar}
         </Drawer>
       )}
     </>

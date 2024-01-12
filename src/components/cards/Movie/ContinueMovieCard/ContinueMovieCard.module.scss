@@ -12,7 +12,11 @@ $continue_movie_card_width: 210px;
   border-radius: 16px;
   padding: 10px;
 
+  height: 100%;
   width: $continue_movie_card_width;
+
+  display: flex;
+  flex-direction: column;
 
   > * + * {
     margin-top: 10px;
@@ -25,6 +29,7 @@ $continue_movie_card_width: 210px;
 
   &_information {
     display: flex;
+    flex-grow: 1;
     gap: 10px;
     align-items: flex-start;
 

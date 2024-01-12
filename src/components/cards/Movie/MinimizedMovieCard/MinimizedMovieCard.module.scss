@@ -6,11 +6,16 @@ $minimized_movie_card_width: 210px;
   border-radius: 16px;
   padding: 10px;
 
+  display: flex;
+  flex-direction: column;
+
   width: $minimized_movie_card_width;
+  height: 100%;
 
   > h3 {
     color: variants.$text;
     font-weight: 800;
+    flex-grow: 1;
   }
 
   > :nth-child(2) {

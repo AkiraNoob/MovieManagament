@@ -10,7 +10,14 @@
     margin: 40px 0;
   }
 
+  &_panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   &_movies {
+    flex-grow: 1;
     display: grid;
     justify-content: space-between;
     width: fit-content;
@@ -21,5 +28,9 @@
       4,
       movieCardVariants.$default_movie_card_width
     );
+  }
+
+  &_see_more {
+    margin: 20px auto 60px;
   }
 }

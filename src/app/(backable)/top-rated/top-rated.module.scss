@@ -3,6 +3,10 @@
   as movieCardVariants;
 
 .page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
   &_header {
     font-size: 48px;
     font-weight: 800;
@@ -11,6 +15,7 @@
   }
 
   &_movies {
+    flex-grow: 1;
     display: grid;
     justify-content: space-between;
     row-gap: 40px;
@@ -18,5 +23,9 @@
       3,
       movieCardVariants.$extend_movie_card_width
     );
+  }
+
+  &_see_more {
+    margin: 20px auto 60px;
   }
 }

@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import styles from "../../InteractionButton.module.scss";
 import {
   EDefaultMovieCardPlacement,
-  IDefaultMovieCard,
+  TDefaultMovieCard,
 } from "../DefaultMovieCard";
 
 const loading = () => (
@@ -37,9 +37,9 @@ const WatchlistPlacementButton = dynamic(
 const DefaultMovieCardInteractionButtons = ({
   id,
   place,
-}: { id: string } & Pick<IDefaultMovieCard, "place">) => {
+}: { id: number } & Pick<TDefaultMovieCard, "place">) => {
   const hashButtonPairs: {
-    [key in IDefaultMovieCard["place"]]: React.ReactNode;
+    [key in TDefaultMovieCard["place"]]: React.ReactNode;
   } = {
     [EDefaultMovieCardPlacement.Home]: <HomePlacementButton id={id} />,
     [EDefaultMovieCardPlacement.Recent]: <RecentPlacementButton id={id} />,

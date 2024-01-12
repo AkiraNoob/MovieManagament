@@ -16,6 +16,8 @@ $extend_movie_card_cover_height: 417px;
   border-radius: 16px;
   overflow: hidden;
   color: var(--text);
+  display: flex;
+  flex-direction: column;
 
   > * + *:not(.extend_movie_card_rating_score) {
     margin-top: 15px;
@@ -24,6 +26,7 @@ $extend_movie_card_cover_height: 417px;
   &_cover {
     max-height: $extend_movie_card_cover_height;
     object-fit: cover;
+    flex-grow: 1;
   }
 
   &_rating_score {

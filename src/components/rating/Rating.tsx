@@ -1,4 +1,12 @@
 import Rating from "@mui/material/Rating";
+import { useParams } from "next/navigation";
+import { useContext } from "react";
+import { userContext } from "~/app/userProvider";
+import {
+  useGetRating,
+  usePostRating,
+  usePutRating,
+} from "~/hooks/rating/useRating";
 import variants from "../../app/_variants.module.scss";
 type T = React.SVGProps<SVGSVGElement>;
 
@@ -61,3 +69,54 @@ export default function CustomRating({ size, value }: ICustomRating) {
     />
   );
 }
+
+export const CustomActiveRating = ({ size }: { size: number }) => {
+  const { isLogin } = useContext(userContext);
+  const { movieId } = useParams();
+
+  const { isError, data, isSuccess } = useGetRating();
+
+  const { mutate: postRating } = usePostRating();
+  const { mutate: putRating } = usePutRating();
+
+  return (
+    <div
+      style={{
+        marginTop: "-20px",
+        marginBottom: "30px",
+      }}
+    >
+      <p>How much you rate this film?</p>
+      <Rating
+        icon={
+          <FilledStarIcon width={size} height={size} color={variants.primary} />
+        }
+        emptyIcon={
+          <OutlinedStarIcon
+            width={size}
+            height={size}
+            color={variants.primary}
+          />
+        }
+        disabled={!isLogin}
+        precision={0.1}
+        value={data?.score}
+        onChange={(e, value) => {
+          if (isSuccess) {
+            putRating({
+              movieId: parseInt(movieId as string),
+              timestamp: new Date().toISOString(),
+              score: value || 0,
+            });
+          } else {
+            postRating({
+              movieId: parseInt(movieId as string),
+              timestamp: new Date().toISOString(),
+              score: value || 0,
+            });
+          }
+        }}
+      />
+    </div>
+  );
+};

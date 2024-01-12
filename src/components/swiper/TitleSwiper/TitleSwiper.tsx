@@ -63,7 +63,13 @@ const TitleSwiper = ({
         modules={[Navigation, Pagination]}
       >
         {children.map((item, index) => (
-          <SwiperSlide className={`${styles.title_swiper_slide}`} key={index}>
+          <SwiperSlide
+            style={{
+              marginRight: `${swiperProps?.spaceBetween || 12}px`,
+            }}
+            className={`${styles.title_swiper_slide}`}
+            key={index}
+          >
             {item}
           </SwiperSlide>
         ))}

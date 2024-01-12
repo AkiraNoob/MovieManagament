@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-export const useNavigateToMovieDetail = (movieId: string) => {
+export const useNavigateToMovieDetail = (movieId: number) => {
   const router = useRouter();
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export const useNavigateToMovieDetail = (movieId: string) => {
   return { navigate };
 };
 
-export const useNavigateContinueWatchMovie = (movieId: string) => {
+export const useNavigateContinueWatchMovie = (movieId: number) => {
   const router = useRouter();
 
   useEffect(() => {
