@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, useContext, useState } from "react";
 import { userContext } from "~/app/userProvider";
 import useLogin from "~/hooks/auth/useLogin";
 import styles from "../RequestLoginHOC.module.scss";
+import { useRouter } from "next/navigation";
 
 function LoginForm({
   setType,
@@ -12,11 +13,13 @@ function LoginForm({
   toggle: () => void;
 }) {
   const { setIsLogin } = useContext(userContext);
+const router = useRouter();
 
   const { mutate } = useLogin({
     onSuccess() {
       toggle();
       setIsLogin(true);
+      router.refresh();
     },
   });
 

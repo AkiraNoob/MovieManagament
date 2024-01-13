@@ -30,3 +30,11 @@ export const apiPostValidateVidSrcUrl = (vidSrcUrl: string) =>
   httpRequest.post<boolean>(`/api/app/movie/validate-vid-src-url`, {
     vidSrcUrl,
   });
+
+export const apiGetSuggestedMovie =(count: number) => httpRequest.post<TPaginateResponse<TMovieDTO>>(`api/app/recommendation/recommend-movies?n=${count}`, null)
+
+export const apiGetAllMovies = (paginate: TPaginateRequest, search: string) =>
+  httpRequest.get<TPaginateResponse<TMovieDTO>>(
+    `/api/app/movie${generatePaginateQuery(paginate)}&search=${search}`,
+  );
+

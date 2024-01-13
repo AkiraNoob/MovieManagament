@@ -8,6 +8,7 @@ import { parseDurationVideo } from "~/helpers/parseDurationVideo";
 import { TMovieDTO } from "~/types/data/movie.types";
 import styles from "./ExtendMovieCard.module.scss";
 import ExtendMovieCardInteractionButtons from "./components/ExtendMovieCardInteractionButtons";
+import { useState } from "react";
 
 type TExtendMovieCard = Pick<
   TMovieDTO,
@@ -30,16 +31,22 @@ const ExtendMovieCard = ({
   overview,
   voteAverage,
 }: TExtendMovieCard) => {
+
+  const [img, setImg] = useState(generateImagePath(posterPath));
+
   return (
     <div className={styles.extend_movie_card}>
       <Image
-        src={generateImagePath(posterPath)}
+        src={img}
+        onError={(e) => {
+          setImg("/placeholder.jpg");
+        }}
         width={parseInt(styles.movieCardWidth)}
         height={417}
         alt="movie cover"
         className={styles.extend_movie_card_cover}
       />
-      <div className={styles.extend_movie_card_rating_score}>{voteAverage}</div>
+      <div className={styles.extend_movie_card_rating_score}>{Math.round(voteAverage * 100) / 100}</div>
       <div className={styles.extend_movie_card_interaction}>
         <div>
           <p>{parseDurationVideo(runtime)}</p>
@@ -49,7 +56,7 @@ const ExtendMovieCard = ({
       </div>
       <div className={styles.extend_movie_card_information}>
         <h6 className={styles.extend_movie_card_information_title}>{title}</h6>
-        <CustomRating size={21} value={voteAverage} />
+        <CustomRating size={21} value={Math.round(voteAverage || 0)} />
         <p className={styles.extend_movie_card_information_date_released}>
           {new Date(releaseDate).toLocaleDateString()}
         </p>

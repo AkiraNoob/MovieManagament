@@ -3,7 +3,7 @@ import moment from 'moment';
 export const formatSingleNumber = (_: number) => (_ > 9 ? _.toString() : `0${_}`);
 
 export const parseDurationVideo = (quantity: number) => {
-  const duration = moment.duration(quantity, 'second');
+  const duration = moment.duration(quantity, 'minute');
 
-  return `${formatSingleNumber(duration.minutes())}:${formatSingleNumber(duration.seconds())}`;
+  return `${formatSingleNumber(duration.hours())}:${formatSingleNumber(duration.minutes())}:${formatSingleNumber(duration.seconds())}`;
 };

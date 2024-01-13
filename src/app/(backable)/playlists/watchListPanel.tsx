@@ -39,7 +39,7 @@ const WatchlistPanel = ({ currentTab }: { currentTab: number }) => {
                       key={item.id}
                       id={item.id}
                       title={item.title}
-                      genres={["Movie", "Horror", "Love", "Fiction"]}
+                      genres={item.genres}
                       place={EDefaultMovieCardPlacement.Watchlist}
                       posterPath={item.posterPath}
                       runtime={item.runtime}

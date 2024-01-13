@@ -34,7 +34,7 @@ const TopRatedList = () => {
               <ExtendMovieCard
                 key={item.id}
                 id={item.id}
-                genres={["Movie", "Horror", "Love", "Fiction"]}
+                genres={item.genres}
                 posterPath={item.posterPath}
                 title={item.title}
                 runtime={item.runtime}

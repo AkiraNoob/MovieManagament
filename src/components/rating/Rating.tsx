@@ -12,7 +12,7 @@ type T = React.SVGProps<SVGSVGElement>;
 
 interface ICustomRating {
   size: number;
-  value: number;
+  value: number | null;
 }
 
 const FilledStarIcon = (props: T) => (
@@ -65,7 +65,7 @@ export default function CustomRating({ size, value }: ICustomRating) {
       }
       readOnly
       precision={0.1}
-      value={value}
+      value={value || 0}
     />
   );
 }
@@ -100,7 +100,7 @@ export const CustomActiveRating = ({ size }: { size: number }) => {
         }
         disabled={!isLogin}
         precision={0.1}
-        value={data?.score}
+        value={data?.score || 0}
         onChange={(e, value) => {
           if (isSuccess) {
             putRating({

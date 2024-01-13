@@ -5,6 +5,8 @@ import GenersList from "./genresList";
 import RandomList from "./randomList";
 import styles from "./root.module.scss";
 import TopRated from "./topRated";
+import SuggestedMovie from "~/components/SuggestedMovie";
+import RandomOrSuggest from "~/app/RandomOrSuggest";
 
 export default function Home() {
   return (
@@ -13,20 +15,7 @@ export default function Home() {
         <SearchInput sidebar={<SideBar />} />
         <RandomList />
         <h2>Movies for you</h2>
-        {/* <TitleSwiper>
-          {new Array(10).fill(0).map((_, index) => (
-            <DefaultMovieCard
-              key={index}
-              id={"tt0111161"}
-              cover={"/mock_cover.png"}
-              title={"Loki"}
-              duration={"01:30:00"}
-              genres={["Horror", "Fantasy"]}
-              rating={4.5}
-              place={EDefaultMovieCardPlacement.Home}
-            />
-          ))}
-        </TitleSwiper> */}
+         <RandomOrSuggest/>
       </div>
       <div className={styles.home_content_right}>
         <div>

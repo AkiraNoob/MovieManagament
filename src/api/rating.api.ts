@@ -21,4 +21,4 @@ export type TRatingResponse = {
   timestamp: string;
 };
 
-export const apiGetRating = () => httpRequest.get<TRatingResponse>(`/ratings`);
+export const apiGetRating = (movieId: string) => httpRequest.get<TRatingResponse>(`/ratings?movieId=${movieId}`);

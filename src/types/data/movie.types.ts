@@ -11,6 +11,7 @@ export type TMovieDTO = {
   popularity: number;
   revenue: number;
   runtime: number;
-  voteAverage: number;
+  voteAverage: number | null;
   voteCount: number;
+  genres: string[]
 };

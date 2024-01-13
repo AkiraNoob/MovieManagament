@@ -27,7 +27,7 @@ const useGetMoviesByGenres = (
 ) => {
   const queryReturn = useInfiniteQuery({
     ...config,
-    queryKey: [QUERY_KEY.MOVIES_BY_GENRES, perPage],
+    queryKey: [QUERY_KEY.MOVIES_BY_GENRES, genresId, perPage],
     queryFn: (ctx: QueryFunctionContext<ExtendsQueryKey, number>) =>
       apiGetMovieByGenres(genresId, generatePaginateFromInfiniteQuery(ctx, 1)),
     getNextPageParam(

@@ -3,7 +3,7 @@
 .container {
   max-width: variants.$container;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto 50px;
   display: flex;
   overflow-x: hidden;
   overflow-y: auto;
@@ -28,6 +28,7 @@
 }
 
 .home_content {
+  margin-bottom: 20px;
   &_left {
     width: 65%;
     padding: 18px 36px;

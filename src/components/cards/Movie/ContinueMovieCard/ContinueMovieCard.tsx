@@ -4,6 +4,7 @@ import { generateImagePath } from "~/helpers/generateImagePath";
 import { TMovieDTO } from "~/types/data/movie.types";
 import styles from "./ContinueMovieCard.module.scss";
 import ContinueMovieCardInteractionButtons from "./components/ContinueMovieCardInteractionButtons";
+import { useState } from "react";
 
 type TContinueMovieCard = Pick<TMovieDTO, "id" | "posterPath" | "title"> & {
   lastSeenMoment: string;
@@ -15,11 +16,17 @@ const ContinueMovieCard = ({
   lastSeenMoment,
   posterPath,
 }: TContinueMovieCard) => {
+
+  const [img, setImg] = useState(generateImagePath(posterPath));
+
   return (
     <div className={styles.continue_movie_card}>
       <div className={styles.continue_movie_card_information}>
         <Image
-          src={generateImagePath(posterPath)}
+          src={img}
+          onError={(e) => {
+            setImg("/placeholder.jpg");
+          }}
           width={55}
           height={59}
           alt="movie cover"

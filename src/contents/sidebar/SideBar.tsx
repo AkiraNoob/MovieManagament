@@ -47,15 +47,7 @@ const SideBar = () => {
       <SideBarMenu
         title={"General"}
         menuItem={
-          isLogin
-            ? [
-                {
-                  label: "Settings",
-                  icon: <SettingsOutlinedIcon />,
-                  href: "/settings",
-                },
-              ]
-            : []
+          []
         }
         trailingChildren={isLogin ? <LogoutButton /> : <LoginButton />}
       />

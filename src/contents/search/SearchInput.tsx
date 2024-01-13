@@ -10,8 +10,10 @@ import { useState } from "react";
 import variants from "~/app/_variants.module.scss";
 import useToggle from "~/hooks/useToggle";
 import styles from "./SearchInput.module.scss";
+import { useRouter } from "next/navigation";
 
 const SearchInput = ({ sidebar }: { sidebar: React.ReactNode }) => {
+  const router = useRouter();
   const [search, setSearch] = useState<string>("");
   const [openSideBar, toggle] = useToggle(false);
 
@@ -29,6 +31,11 @@ const SearchInput = ({ sidebar }: { sidebar: React.ReactNode }) => {
         </div>
 
         <TextField
+          onKeyUp={ e => {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+              router.push(`/search?search=${search}`);
+            }
+          }}
           InputProps={{
             startAdornment: <SearchIcon />,
           }}

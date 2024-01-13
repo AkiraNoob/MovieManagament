@@ -12,6 +12,7 @@ import { ExtendsQueryKey } from "~/types/reactQuery.types";
 
 const useGetRandomMovies = (
   perPage: number,
+  uniqueKey: string = "randomMovies",
   config?: Omit<
     UseInfiniteQueryOptions<
       TPaginateResponse<TMovieDTO>,
@@ -26,7 +27,7 @@ const useGetRandomMovies = (
 ) => {
   const queryReturn = useInfiniteQuery({
     ...config,
-    queryKey: [QUERY_KEY.RANDOM_MOVIES, perPage],
+    queryKey: [QUERY_KEY.RANDOM_MOVIES, perPage, uniqueKey],
     queryFn: (ctx: QueryFunctionContext<ExtendsQueryKey, number>) =>
       apiGetRandomMovies(generatePaginateFromInfiniteQuery(ctx, 1)),
     getNextPageParam(

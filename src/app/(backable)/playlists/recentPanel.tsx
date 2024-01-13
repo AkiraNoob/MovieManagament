@@ -38,7 +38,7 @@ const RecentPanel = ({ currentTab }: { currentTab: number }) => {
                     key={item.id}
                     id={item.id}
                     title={item.title}
-                    genres={["Movie", "Horror", "Love", "Fiction"]}
+                    genres={item.genres}
                     place={EDefaultMovieCardPlacement.Recent}
                     posterPath={item.posterPath}
                     runtime={item.runtime}

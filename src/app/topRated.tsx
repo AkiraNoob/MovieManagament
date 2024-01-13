@@ -33,7 +33,7 @@ const TopRated = () => {
               posterPath={item.posterPath}
               title={item.title}
               runtime={item.runtime}
-              genres={["Horror", "Love"]}
+              genres={item.genres}
             />
           ))
         : new Array(6)

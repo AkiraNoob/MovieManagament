@@ -9,4 +9,5 @@ export const QUERY_KEY = {
   RANDOM_MOVIES: "RANDOM_MOVIES",
   ME: "ME",
   RATING: "RATING",
+  GET_ALL: 'GET_ALL'
 };
