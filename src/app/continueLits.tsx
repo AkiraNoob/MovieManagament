@@ -34,10 +34,8 @@ const ContinueList = () => {
             : data.map((item) => (
                 <ContinueMovieCard
                   key={item.id}
-                  id={item.id}
-                  posterPath={item.posterPath}
-                  title={item.title}
                   lastSeenMoment={"01:10:00"}
+                  {...item}
                 />
               ))
           : new Array(10)

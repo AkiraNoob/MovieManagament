@@ -54,6 +54,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           gap: "4px",
+          width: "fit-content",
         },
       },
     },

@@ -31,17 +31,7 @@ const TopRatedList = () => {
         {data && !isLoading ? (
           <>
             {data.map((item) => (
-              <ExtendMovieCard
-                key={item.id}
-                id={item.id}
-                genres={item.genres}
-                posterPath={item.posterPath}
-                title={item.title}
-                runtime={item.runtime}
-                overview={item.overview}
-                voteAverage={item.voteAverage}
-                releaseDate={item.releaseDate}
-              />
+              <ExtendMovieCard key={item.id} {...item} />
             ))}
             {isFetchingNextPage && <Placholder />}
           </>

@@ -1,0 +1,74 @@
+@use "../../variants.module" as variants;
+@use "../../../components/cards/Movie/ExtendMovieCard/ExtendMovieCard.module.scss"
+  as movieCardVariants;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &_header {
+    font-size: 48px;
+    font-weight: 800;
+    color: variants.$text;
+    margin: 40px 0;
+
+    > span {
+      color: variants.$primary;
+    }
+  }
+
+  &_main {
+    display: flex;
+    gap: 20px;
+
+    &_left {
+      max-width: 185px;
+      flex-shrink: 1;
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      align-self: flex-start;
+      top: 50px;
+
+      &_divider {
+        margin: 20px 0;
+      }
+
+      &_rating {
+        display: flex;
+        flex-direction: column;
+        row-gap: 12px;
+
+        > div {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+
+    &_right {
+      flex-grow: 1;
+      width: max-content;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  &_movies {
+    flex-grow: 1;
+    display: grid;
+    column-gap: 20px;
+    row-gap: 40px;
+    grid-template-columns: repeat(
+      3,
+      movieCardVariants.$extend_movie_card_width
+    );
+  }
+
+  &_see_more {
+    margin: 20px auto;
+  }
+}

@@ -3,11 +3,12 @@ import { TPaginateRequest } from "~/types/api.types";
 import { ExtendsQueryKey } from "~/types/reactQuery.types";
 
 export const generatePaginateQuery = (paginate: TPaginateRequest) =>
-  `?SkipCount=${paginate.skipCount}&MaxResultCount=${paginate.maxResultCount}`;
+  `?SkipCount=${paginate.skipCount}&MaxResultCount=${paginate.maxResultCount}&Sorting=${paginate.sortby}`;
 
 export const generatePaginateFromInfiniteQuery = (
   context: QueryFunctionContext<ExtendsQueryKey, number>,
   pageCountIndexInQueryKey: number,
+  sortby?: string,
 ): TPaginateRequest => {
   const { pageParam = 1, queryKey } = context;
 
@@ -17,5 +18,6 @@ export const generatePaginateFromInfiniteQuery = (
   return {
     maxResultCount,
     skipCount,
+    sortby: sortby || "",
   };
 };

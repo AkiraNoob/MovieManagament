@@ -27,14 +27,7 @@ const TopRated = () => {
     >
       {data && !isLoading
         ? data.map((item, index) => (
-            <MinimizedMovieCard
-              key={index}
-              id={item.id}
-              posterPath={item.posterPath}
-              title={item.title}
-              runtime={item.runtime}
-              genres={item.genres}
-            />
+            <MinimizedMovieCard key={index} {...item} />
           ))
         : new Array(6)
             .fill(0)

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import CustomRating from "~/components/rating/Rating";
 import MovieDetailInteractionButton from "~/contents/button/MovieDetailInteractionButton";
-import { generateImagePath } from "~/helpers/generateImagePath";
+import { parseDurationVideo } from "~/helpers/parseDurationVideo";
 import useGetDetailMovie from "~/hooks/movie/useGetDetailMovie";
 import styles from "./moveiDetail.module.scss";
 
@@ -20,13 +20,31 @@ const MovieDetailInformation = ({ movieId }: { movieId: string }) => {
         </h1>
         <CustomRating size={38} value={data?.voteAverage || 0} />
 
-        <p className={styles.movie_detail_page_main_information_description}>
-          {data?.overview}
+        <p
+          style={{
+            fontSize: "16px",
+          }}
+        >
+          <i>Total {data?.voteCount} rates</i>
         </p>
-        <MovieDetailInteractionButton id={parseInt(movieId)} />
+
+        <p className={styles.movie_detail_page_main_information_description}>
+          Total times: <span>{parseDurationVideo(data?.runtime || 0)}</span>
+        </p>
+        <p className={styles.movie_detail_page_main_information_description}>
+          Genres: <span>{data?.genres.join(", ")}</span>
+        </p>
+        <p className={styles.movie_detail_page_main_information_description}>
+          Overview: {data?.overview}
+        </p>
+
+        <MovieDetailInteractionButton
+          id={parseInt(movieId)}
+          isInWatchList={data?.isInWatchList || false}
+        />
       </div>
       <Image
-        src={generateImagePath(data?.posterPath || "")}
+        src={data?.posterPath || "/placeholder.jpg"}
         alt="movie cover"
         width={452}
         height={568}

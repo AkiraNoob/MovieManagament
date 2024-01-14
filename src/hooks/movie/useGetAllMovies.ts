@@ -3,15 +3,23 @@ import {
   UseInfiniteQueryOptions,
   useInfiniteQuery,
 } from "@tanstack/react-query";
-import { apiGetAllMovies, apiGetTopRatedMovies } from "~/api/movie.api";
+import { apiGetAllMovies } from "~/api/movie.api";
 import { QUERY_KEY } from "~/constant/reactQueryKey";
 import { generatePaginateFromInfiniteQuery } from "~/helpers/generatePaginateQuery";
 import { TError, TPaginateResponse } from "~/types/api.types";
 import { TMovieDTO } from "~/types/data/movie.types";
 import { ExtendsQueryKey } from "~/types/reactQuery.types";
 
-const useGetTopRatedMovies = (
-  queryKey: string,
+export type TGetAllMoviesQuery = {
+  searchByTitle: string;
+  searchByOverview: string;
+  minRating: number;
+  maxRating: number;
+  genres: string[];
+};
+
+const useGetAllMovies = (
+  queryOption: TGetAllMoviesQuery,
   perPage: number,
   config?: Omit<
     UseInfiniteQueryOptions<
@@ -27,9 +35,9 @@ const useGetTopRatedMovies = (
 ) => {
   const queryReturn = useInfiniteQuery({
     ...config,
-    queryKey: [QUERY_KEY.GET_ALL, perPage, queryKey],
+    queryKey: [QUERY_KEY.GET_ALL, perPage, JSON.stringify(queryOption)],
     queryFn: (ctx: QueryFunctionContext<ExtendsQueryKey, number>) =>
-      apiGetAllMovies(generatePaginateFromInfiniteQuery(ctx, 1),queryKey),
+      apiGetAllMovies(generatePaginateFromInfiniteQuery(ctx, 1), queryOption),
     getNextPageParam(
       _lastPage: TPaginateResponse<TMovieDTO>,
       _allPages: TPaginateResponse<TMovieDTO>[],
@@ -50,4 +58,4 @@ const useGetTopRatedMovies = (
   return queryReturn;
 };
 
-export default useGetTopRatedMovies;
+export default useGetAllMovies;

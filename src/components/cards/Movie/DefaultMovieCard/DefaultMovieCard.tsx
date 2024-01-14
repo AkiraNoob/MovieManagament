@@ -1,6 +1,5 @@
 import { Skeleton } from "@mui/material";
 import CustomRating from "~/components/rating/Rating";
-import { generateImagePath } from "~/helpers/generateImagePath";
 import { parseDurationVideo } from "~/helpers/parseDurationVideo";
 import { TMovieDTO } from "~/types/data/movie.types";
 import { generatEDefaultMovieCardPlacementBackgroundImage } from "../../../../helpers/generateBackgroundImage";
@@ -13,11 +12,6 @@ export enum EDefaultMovieCardPlacement {
   Recent = "Recent",
 }
 
-export type TDefaultMovieCard = Pick<
-  TMovieDTO,
-  "id" | "posterPath" | "title" | "runtime" | "voteAverage"
-> & { genres: string[]; place: EDefaultMovieCardPlacement };
-
 const DefaultMovieCard = ({
   id,
   title,
@@ -26,13 +20,15 @@ const DefaultMovieCard = ({
   posterPath,
   runtime,
   voteAverage,
-}: TDefaultMovieCard) => {
+  isInWatchList,
+}: TMovieDTO & {
+  place: EDefaultMovieCardPlacement;
+}) => {
   return (
     <div
       style={{
-        backgroundImage: generatEDefaultMovieCardPlacementBackgroundImage(
-          generateImagePath(posterPath),
-        ),
+        backgroundImage:
+          generatEDefaultMovieCardPlacementBackgroundImage(posterPath),
       }}
       className={`${styles.default_movie_card} movie_background`}
     >
@@ -45,7 +41,11 @@ const DefaultMovieCard = ({
           <p>{parseDurationVideo(runtime)}</p>
           <p className="truncate">{genres.slice(0, 2).join(", ")}</p>
         </div>
-        <DefaultMovieCardInteractionButtons place={place} id={id} />
+        <DefaultMovieCardInteractionButtons
+          place={place}
+          id={id}
+          isInWatchlist={isInWatchList || false}
+        />
       </div>
     </div>
   );

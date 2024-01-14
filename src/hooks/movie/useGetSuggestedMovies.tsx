@@ -3,9 +3,7 @@ import {
   UseInfiniteQueryOptions,
   useInfiniteQuery,
 } from "@tanstack/react-query";
-import { apiGetRandomMovies, apiGetSuggestedMovie } from "~/api/movie.api";
-import { QUERY_KEY } from "~/constant/reactQueryKey";
-import { generatePaginateFromInfiniteQuery } from "~/helpers/generatePaginateQuery";
+import { apiGetSuggestedMovie } from "~/api/movie.api";
 import { TError, TPaginateResponse } from "~/types/api.types";
 import { TMovieDTO } from "~/types/data/movie.types";
 import { ExtendsQueryKey } from "~/types/reactQuery.types";
@@ -44,6 +42,7 @@ const useGetSuggestedMovies = (
       return result.flat();
     },
     initialPageParam: 1,
+    enabled: false,
   });
 
   return queryReturn;

@@ -8,6 +8,7 @@ export type TPaginateResponse<T> = {
 export type TPaginateRequest = {
   skipCount: number;
   maxResultCount: number;
+  sortby: string;
 };
 
 export type TError = AxiosError<{ error: { message: string } }>;

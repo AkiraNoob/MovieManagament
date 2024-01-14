@@ -1,18 +1,14 @@
-'use client'
+"use client";
 
 import { useContext } from "react";
 import { userContext } from "~/app/userProvider";
-import SuggestedMovie from "~/components/SuggestedMovie";
 import RandomMovieDefault from "~/components/RandomMovieDefault";
+import SuggestedMovie from "~/components/SuggestedMovie";
 
 const RandomOrSuggest = () => {
-  const {isLogin} = useContext(userContext)
+  const { isLogin } = useContext(userContext);
 
-  return <>
+  return <>{isLogin ? <SuggestedMovie /> : <RandomMovieDefault />}</>;
+};
 
-    {isLogin ?
-      <SuggestedMovie/>
-      :<RandomMovieDefault/>}</>
-}
-
-export  default  RandomOrSuggest
+export default RandomOrSuggest;

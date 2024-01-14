@@ -3,6 +3,8 @@
 import { Skeleton } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
+import { CustomActiveRating } from "~/components/rating/Rating";
+import RequestLoginHOC from "~/contents/HOC/RequestLoginHOC";
 import useGetDetailMovie from "~/hooks/movie/useGetDetailMovie";
 import usePostValidateVidSrcUrl from "~/hooks/movie/usePostValidateVidSrcUrl";
 import useAddToWatching from "~/hooks/watching/useAddToWatching";
@@ -14,8 +16,8 @@ const WatchIframe = ({ movieId }: { movieId: string }) => {
   });
   const { mutate: addToWatching } = useAddToWatching();
 
-  const { mutate, isPending, isSuccess } = usePostValidateVidSrcUrl({
-    onSuccess(data, variables, context) {
+  const { mutate, isSuccess } = usePostValidateVidSrcUrl({
+    onSuccess(data) {
       if (!data) {
         setPrefix("tv");
         return;
@@ -26,7 +28,7 @@ const WatchIframe = ({ movieId }: { movieId: string }) => {
         lastViewMoment: "00:00:00",
       });
     },
-    onError(error, variables, context) {
+    onError() {
       toast("Có lỗi xảy ra khi lấy thông tin phim.");
     },
   });
@@ -41,21 +43,35 @@ const WatchIframe = ({ movieId }: { movieId: string }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.imdbId, prefix]);
 
-  return isSuccess ? (
-    <iframe
-      ref={iframeRef}
-      className={styles.movie_watch_page_iframe}
-      allow="fullscreen"
-      allowFullScreen
-      src={`https://vidsrc.to/embed/${prefix}/${data?.imdbId}`}
-    />
-  ) : (
-    <Skeleton
-      className={styles.movie_watch_page_iframe}
-      width={"100%"}
-      height={"100%"}
-    />
+  return (
+    <>
+      {isSuccess ? (
+        <iframe
+          ref={iframeRef}
+          className={styles.movie_watch_page_iframe}
+          allow="fullscreen"
+          allowFullScreen
+          src={`https://vidsrc.to/embed/${prefix}/${data?.imdbId}`}
+        />
+      ) : (
+        <Skeleton
+          className={styles.movie_watch_page_iframe}
+          width={"100%"}
+          height={"100%"}
+        />
+      )}
+
+      <Rating />
+    </>
   );
 };
 
 export default WatchIframe;
+
+function Rating() {
+  return (
+    <RequestLoginHOC>
+      <CustomActiveRating size={21} enable={true} />
+    </RequestLoginHOC>
+  );
+}

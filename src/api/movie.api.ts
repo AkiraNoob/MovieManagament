@@ -1,4 +1,5 @@
 import { generatePaginateQuery } from "~/helpers/generatePaginateQuery";
+import { TGetAllMoviesQuery } from "~/hooks/movie/useGetAllMovies";
 import httpRequest from "~/service/httpRequest";
 import { TPaginateRequest, TPaginateResponse } from "~/types/api.types";
 import { TMovieDTO } from "~/types/data/movie.types";
@@ -31,10 +32,22 @@ export const apiPostValidateVidSrcUrl = (vidSrcUrl: string) =>
     vidSrcUrl,
   });
 
-export const apiGetSuggestedMovie =(count: number) => httpRequest.post<TPaginateResponse<TMovieDTO>>(`api/app/recommendation/recommend-movies?n=${count}`, null)
-
-export const apiGetAllMovies = (paginate: TPaginateRequest, search: string) =>
-  httpRequest.get<TPaginateResponse<TMovieDTO>>(
-    `/api/app/movie${generatePaginateQuery(paginate)}&search=${search}`,
+export const apiGetSuggestedMovie = (count: number) =>
+  httpRequest.post<TPaginateResponse<TMovieDTO>>(
+    `api/app/recommendation/recommend-movies?n=${count}`,
+    null,
   );
 
+export const apiGetAllMovies = (
+  paginate: TPaginateRequest,
+  queryOption: TGetAllMoviesQuery,
+) =>
+  httpRequest.get<TPaginateResponse<TMovieDTO>>(
+    `/api/app/movie${generatePaginateQuery(paginate)}&searchByTitle=${
+      queryOption.searchByTitle
+    }&searchByOverview=${queryOption.searchByOverview}&maxRating=${
+      queryOption.maxRating
+    }&minRating=${queryOption.minRating}${queryOption.genres
+      .map((item) => `&genres=${item}`)
+      .join("")}`,
+  );

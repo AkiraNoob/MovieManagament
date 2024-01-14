@@ -1,4 +1,4 @@
-import Rating from "@mui/material/Rating";
+import Rating, { RatingProps } from "@mui/material/Rating";
 import { useParams } from "next/navigation";
 import { useContext } from "react";
 import { userContext } from "~/app/userProvider";
@@ -70,7 +70,41 @@ export default function CustomRating({ size, value }: ICustomRating) {
   );
 }
 
-export const CustomActiveRating = ({ size }: { size: number }) => {
+export function CustomControlledRating({
+  iconSize,
+  ...props
+}: RatingProps & {
+  iconSize: number;
+}) {
+  return (
+    <Rating
+      {...props}
+      icon={
+        <FilledStarIcon
+          width={iconSize}
+          height={iconSize}
+          color={variants.primary}
+        />
+      }
+      emptyIcon={
+        <OutlinedStarIcon
+          width={iconSize}
+          height={iconSize}
+          color={variants.primary}
+        />
+      }
+      precision={0.1}
+    />
+  );
+}
+
+export const CustomActiveRating = ({
+  size,
+  enable,
+}: {
+  size: number;
+  enable: boolean;
+}) => {
   const { isLogin } = useContext(userContext);
   const { movieId } = useParams();
 
@@ -98,7 +132,7 @@ export const CustomActiveRating = ({ size }: { size: number }) => {
             color={variants.primary}
           />
         }
-        disabled={!isLogin}
+        disabled={!isLogin && enable}
         precision={0.1}
         value={data?.score || 0}
         onChange={(e, value) => {

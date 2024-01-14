@@ -37,13 +37,8 @@ const WatchlistPanel = ({ currentTab }: { currentTab: number }) => {
                   {data.map((item) => (
                     <DefaultMovieCard
                       key={item.id}
-                      id={item.id}
-                      title={item.title}
-                      genres={item.genres}
                       place={EDefaultMovieCardPlacement.Watchlist}
-                      posterPath={item.posterPath}
-                      runtime={item.runtime}
-                      voteAverage={item.voteAverage}
+                      {...item}
                     />
                   ))}
                   {isFetchingNextPage && <Placholder />}

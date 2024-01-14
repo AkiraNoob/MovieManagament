@@ -1,5 +1,10 @@
 .backable_layout {
-  padding: 96px 20px 0px;
+  padding: 50px 20px 20px;
   width: 100%;
   position: relative;
+
+  &_search {
+    max-width: 1000px;
+    margin: 0 auto 35px;
+  }
 }

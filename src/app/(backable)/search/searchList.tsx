@@ -1,21 +1,19 @@
 "use client";
 
 import { Button } from "@mui/material";
+import { useSearchParams } from "next/navigation";
+import { useContext } from "react";
 import ExtendMovieCard, {
   ExtendMovieCardSkeleton,
 } from "~/components/cards/Movie/ExtendMovieCard/ExtendMovieCard";
-import NotFound from "~/components/not-found/NotFound";
-import useGetTopRatedMovies from "~/hooks/movie/useGetTopRatedMovies";
-import styles from "./top-rated.module.scss";
-import { useParams, useSearchParams } from "next/navigation";
 import useGetAllMovies from "~/hooks/movie/useGetAllMovies";
+import styles from "./search.module.scss";
+import { searchContext } from "./searchProvider";
 
 const TopRatedList = () => {
-
   const searchParams = useSearchParams();
 
-
-
+  const { selected, minRating, maxRating, genres } = useContext(searchContext);
 
   const {
     data,
@@ -24,25 +22,28 @@ const TopRatedList = () => {
     isFetching,
     fetchNextPage,
     hasNextPage,
-  } = useGetAllMovies(searchParams.get('search') || '', 10 );
+  } = useGetAllMovies(
+    {
+      searchByOverview: selected.overview
+        ? (searchParams.get("search") as string)
+        : "",
+      searchByTitle: selected.title
+        ? (searchParams.get("search") as string)
+        : "",
+      maxRating: maxRating || 5,
+      minRating,
+      genres: genres.map((item) => JSON.parse(item)?.id),
+    },
+    10,
+  );
 
   return (
-    <>
+    <div className={styles.page_main_right}>
       <div className={styles.page_movies}>
         {data && !isLoading ? (
           <>
             {data.map((item) => (
-              <ExtendMovieCard
-                key={item.id}
-                id={item.id}
-                genres={item.genres}
-                posterPath={item.posterPath}
-                title={item.title}
-                runtime={item.runtime}
-                overview={item.overview}
-                voteAverage={item.voteAverage}
-                releaseDate={item.releaseDate}
-              />
+              <ExtendMovieCard key={item.id} {...item} />
             ))}
             {isFetchingNextPage && <Placholder />}
           </>
@@ -59,7 +60,7 @@ const TopRatedList = () => {
           See more
         </Button>
       )}
-    </>
+    </div>
   );
 };
 

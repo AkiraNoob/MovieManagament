@@ -13,5 +13,6 @@ export type TMovieDTO = {
   runtime: number;
   voteAverage: number | null;
   voteCount: number;
-  genres: string[]
+  genres: string[];
+  isInWatchList: boolean | null;
 };

@@ -24,12 +24,13 @@ const useGetRandomMovies = (
     >,
     "queryKey" | "queryFn" | "getNextPageParam" | "initialPageParam"
   >,
+  sorting?: string,
 ) => {
   const queryReturn = useInfiniteQuery({
     ...config,
     queryKey: [QUERY_KEY.RANDOM_MOVIES, perPage, uniqueKey],
     queryFn: (ctx: QueryFunctionContext<ExtendsQueryKey, number>) =>
-      apiGetRandomMovies(generatePaginateFromInfiniteQuery(ctx, 1)),
+      apiGetRandomMovies(generatePaginateFromInfiniteQuery(ctx, 1, sorting)),
     getNextPageParam(
       _lastPage: TPaginateResponse<TMovieDTO>,
       _allPages: TPaginateResponse<TMovieDTO>[],

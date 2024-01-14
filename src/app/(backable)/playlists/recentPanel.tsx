@@ -36,13 +36,8 @@ const RecentPanel = ({ currentTab }: { currentTab: number }) => {
                 {data.map((item) => (
                   <DefaultMovieCard
                     key={item.id}
-                    id={item.id}
-                    title={item.title}
-                    genres={item.genres}
                     place={EDefaultMovieCardPlacement.Recent}
-                    posterPath={item.posterPath}
-                    runtime={item.runtime}
-                    voteAverage={item.voteAverage}
+                    {...item}
                   />
                 ))}
                 {isFetchingNextPage && <Placholder />}

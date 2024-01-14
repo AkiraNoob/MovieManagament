@@ -1,15 +1,9 @@
 import { Skeleton } from "@mui/material";
-import { generateImagePath } from "~/helpers/generateImagePath";
 import { parseDurationVideo } from "~/helpers/parseDurationVideo";
 import { TMovieDTO } from "~/types/data/movie.types";
 import { generateMinimizeMovieCardBackgroundImage } from "../../../../helpers/generateBackgroundImage";
 import styles from "./MinimizedMovieCard.module.scss";
 import MinimizedMovieCardInteractionButtons from "./components/MinimizedMovieCardInteractionButtons";
-
-type TMinimizedMovieCard = Pick<
-  TMovieDTO,
-  "id" | "posterPath" | "title" | "runtime"
-> & { genres: string[] };
 
 const MinimizedMovieCard = ({
   id,
@@ -17,13 +11,12 @@ const MinimizedMovieCard = ({
   title,
   runtime,
   genres,
-}: TMinimizedMovieCard) => {
+  isInWatchList,
+}: TMovieDTO) => {
   return (
     <div
       style={{
-        backgroundImage: generateMinimizeMovieCardBackgroundImage(
-          generateImagePath(posterPath),
-        ),
+        backgroundImage: generateMinimizeMovieCardBackgroundImage(posterPath),
       }}
       className={`${styles.minimized_movie_card} movie_background`}
     >
@@ -32,7 +25,10 @@ const MinimizedMovieCard = ({
         <p>{parseDurationVideo(runtime)}</p>
         <p className="truncate">{genres.slice(0, 2).join(", ")}</p>
       </div>
-      <MinimizedMovieCardInteractionButtons id={id} />
+      <MinimizedMovieCardInteractionButtons
+        id={id}
+        isInWatchList={isInWatchList || false}
+      />
     </div>
   );
 };
