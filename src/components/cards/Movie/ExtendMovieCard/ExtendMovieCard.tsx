@@ -57,7 +57,10 @@ const ExtendMovieCard = ({
       </div>
       <div className={styles.extend_movie_card_information}>
         <h6 className={styles.extend_movie_card_information_title}>{title}</h6>
-        <CustomRating size={21} value={Math.round(voteAverage || 0)} />
+        <CustomRating
+          size={21}
+          value={Math.round((voteAverage || 0) * 100) / 100}
+        />
         <p>{voteCount || 0} votes</p>
         <p className={styles.extend_movie_card_information_date_released}>
           {new Date(releaseDate).toLocaleDateString()}

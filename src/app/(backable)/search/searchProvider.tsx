@@ -38,7 +38,7 @@ const SearchProvider = ({ children }: { children: React.ReactNode }) => {
     overview: true,
   });
   const [minRating, setMinRating] = useState<number>(0);
-  const [maxRating, setMaxRating] = useState<number>(0);
+  const [maxRating, setMaxRating] = useState<number>(5);
   const [genres, setGenres] = useState<string[]>([]);
 
   return (
